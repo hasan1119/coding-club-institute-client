@@ -26,7 +26,7 @@ const Details = () => {
           alert("something went wrong!");
         }
       });
-  }, []);
+  }, [id]);
 
   return (
     <div className="my-4">

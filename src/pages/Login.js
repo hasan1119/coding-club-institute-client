@@ -32,7 +32,7 @@ const Login = () => {
       <h2>Please Login</h2>
       <p className=" mt-2">Login with Email & Password</p>
       <p className="text-danger text-center">{error}</p>
-      <div className="w-25 mx-auto">
+      <div style={{ maxWidth: "500px" }} className="w-100 px-3 mx-auto">
         <Form
           onSubmit={() => {
             signInWithEmail()

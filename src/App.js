@@ -16,6 +16,7 @@ import PrivateRoute from "./route/PrivateRoute.js";
 import Footer from "./components/footer/Footer.js";
 import Header from "./components/header/Header.js";
 import Dashboard from "./pages/Dashboard.js";
+import AdminPanel from "./pages/AdminPanel.js";
 
 function App() {
   return (
@@ -35,6 +36,9 @@ function App() {
 
             <Route path="/about">
               <About></About>
+            </Route>
+            <Route path="/admin">
+              <AdminPanel />
             </Route>
 
             <Route path="/contact">

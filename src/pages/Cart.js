@@ -24,7 +24,33 @@ const Cart = () => {
       <Container>
         {selectedCourse.length ? (
           <Row>
-            <Col md={8}>
+            <Col className="text-center" md={4}>
+              <h4>Total {selectedCourse.length} course selected</h4>
+              <h6>Total Price: {totalPrice.toFixed(2)} $</h6>
+
+              <button
+                onClick={() => {
+                  fetch(
+                    `https://aqueous-dawn-65962.herokuapp.com/purchase/${uid}`,
+                    {
+                      method: "delete",
+                    }
+                  )
+                    .then((res) => res.json())
+                    .then((data) => {
+                      if (data.deletedCount > 0) {
+                        alert("This for purchasing");
+                        setSelectedCourse([]);
+                        history.push("/home");
+                      }
+                    });
+                }}
+                className="btn btn-primary"
+              >
+                Check Out
+              </button>
+            </Col>
+            <Col className="" md={8}>
               {selectedCourse.map((course) => {
                 const { img, _id, title, desc, rating, ratingCount, price } =
                   course;
@@ -83,32 +109,6 @@ const Cart = () => {
                   </Row>
                 );
               })}
-            </Col>
-            <Col className="text-center" md={4}>
-              <h4>Total {selectedCourse.length} course selected</h4>
-              <h6>Total Price: {totalPrice.toFixed(2)} $</h6>
-
-              <button
-                onClick={() => {
-                  fetch(
-                    `https://aqueous-dawn-65962.herokuapp.com/purchase/${uid}`,
-                    {
-                      method: "delete",
-                    }
-                  )
-                    .then((res) => res.json())
-                    .then((data) => {
-                      if (data.deletedCount > 0) {
-                        alert("This for purchasing");
-                        setSelectedCourse([]);
-                        history.push("/home");
-                      }
-                    });
-                }}
-                className="btn btn-primary"
-              >
-                Check Out
-              </button>
             </Col>
           </Row>
         ) : (

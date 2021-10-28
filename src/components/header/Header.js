@@ -1,16 +1,14 @@
 import React from "react";
-import { Container, Nav, Navbar, NavDropdown, Badge } from "react-bootstrap";
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import logo from "./../../assets/images/logo.png";
 import HeaderBG from "./../../assets/images/header-bg.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import useAuth from "../../hooks/useAuth.js";
 import "./header.css";
 
 const Header = () => {
-  const { AllContexts, selectedCourse } = useAuth();
+  const { AllContexts } = useAuth();
   const { user, logOut } = AllContexts;
   const { displayName, photoURL, email } = user;
   return (
@@ -84,6 +82,9 @@ const Header = () => {
                   </NavDropdown>
                 </>
               )}
+              <Nav.Link as={HashLink} to="/admin" className="text-white">
+                Admin Panel
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

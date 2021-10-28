@@ -21,10 +21,10 @@ const Course = ({ course }) => {
       <Zoom>
         <div className="m-2">
           <Card className="mx-auto" style={{ width: "21rem" }}>
-            <Card.Img variant="top" className="img-fluid" src={img} />
+            <Card.Img variant="top" style={{ minHeight: "220px" }} src={img} />
             <Card.Body className="my-1 py-1">
-              <Card.Title>{title}</Card.Title>
-              <Card.Text>{desc}</Card.Text>
+              <Card.Title>{title.slice(0, 25)}</Card.Title>
+              <Card.Text>{desc.slice(0, 50)}</Card.Text>
             </Card.Body>
             <Card.Body className="my-1 py-1">
               <h4>Price: {price}$</h4>
