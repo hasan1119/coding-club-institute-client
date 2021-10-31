@@ -10,7 +10,7 @@ import "./header.css";
 const Header = () => {
   const { AllContexts } = useAuth();
   const { user, logOut } = AllContexts;
-  const { displayName, photoURL, email } = user;
+  const { displayName, photoURL, email, uid } = user;
   return (
     <div className="">
       <Navbar style={{ background: `url(${HeaderBG})` }} expand="lg">
@@ -82,9 +82,11 @@ const Header = () => {
                   </NavDropdown>
                 </>
               )}
-              <Nav.Link as={HashLink} to="/admin" className="text-white">
-                Admin Panel
-              </Nav.Link>
+              {uid === "5SR1S1fW76UBrzUJW0bjxdxcdo73" && (
+                <Nav.Link as={HashLink} to="/admin" className="text-white">
+                  Admin Panel
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

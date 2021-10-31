@@ -3,7 +3,7 @@ import useFirebase from "./useFirebase.js";
 
 const useCart = () => {
   const { user } = useFirebase();
-  const { uid } = user;
+  const { uid, displayName, email } = user;
   const [selectedCourse, setSelectedCourse] = useState([]);
 
   useEffect(() => {
@@ -22,6 +22,8 @@ const useCart = () => {
     );
     delete course._id;
     course.uid = uid;
+    course.name = displayName;
+    course.email = email;
     course.status = "pending";
 
     if (isHave) {
