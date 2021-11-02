@@ -7,7 +7,7 @@ const useCart = () => {
   const [selectedCourse, setSelectedCourse] = useState([]);
 
   useEffect(() => {
-    fetch(`https://aqueous-dawn-65962.herokuapp.com/cart/${uid}`)
+    fetch(`http://localhost:5000/cart/${uid}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.length) {
@@ -29,7 +29,7 @@ const useCart = () => {
     if (isHave) {
       alert("course has been selected!");
     } else {
-      fetch("https://aqueous-dawn-65962.herokuapp.com/course/add", {
+      fetch("http://localhost:5000/course/add", {
         method: "post",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(course),
@@ -45,7 +45,7 @@ const useCart = () => {
   }
 
   function remove(id) {
-    fetch(`https://aqueous-dawn-65962.herokuapp.com/delete/${id}`, {
+    fetch(`http://localhost:5000/delete/${id}`, {
       method: "delete",
     })
       .then((res) => res.json())

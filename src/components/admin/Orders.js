@@ -2,26 +2,47 @@ import React, { useEffect, useState } from "react";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
+  const [reload, setReload] = useState(true);
   useEffect(() => {
-    fetch("https://aqueous-dawn-65962.herokuapp.com/orders")
+    fetch("http://localhost:5000/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data));
-  }, []);
+  }, [reload]);
 
   function cancel(id) {
-    fetch(`https://aqueous-dawn-65962.herokuapp.com/delete/${id}`, {
-      method: "delete",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount === 1) {
-          const remainingOrders = orders.filter((order) => order._id !== id);
-          setOrders(remainingOrders);
-        } else {
-          alert("Something went wrong!!");
-        }
-      });
+    const confirmation = window.confirm("Are you sure to delete!!");
+    if (confirmation) {
+      fetch(`http://localhost:5000/delete/${id}`, {
+        method: "delete",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount === 1) {
+            const remainingOrders = orders.filter((order) => order._id !== id);
+            setOrders(remainingOrders);
+          } else {
+            alert("Something went wrong!!");
+          }
+        });
+    }
   }
+  function confirmHandler(id) {
+    const confirmation = window.confirm("Are you sure to confirm!!");
+    if (confirmation) {
+      fetch(`http://localhost:5000/confirmation/${id}`, {
+        method: "put",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.modifiedCount === 1) {
+            setReload(!reload);
+          } else {
+            alert("Order already confirmed!!");
+          }
+        });
+    }
+  }
+
   return (
     <div>
       <h1 className="text-center">Orders</h1>
@@ -62,7 +83,12 @@ const Orders = () => {
                   </button>
                 </td>
                 <td>
-                  <button className="btn btn-success">Confirm</button>
+                  <button
+                    onClick={() => confirmHandler(_id)}
+                    className="btn btn-success"
+                  >
+                    Confirm
+                  </button>
                 </td>
               </tr>
             );

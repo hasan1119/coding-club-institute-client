@@ -6,9 +6,7 @@ const useCourses = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const size = 9;
   useEffect(() => {
-    fetch(
-      `https://aqueous-dawn-65962.herokuapp.com/courses?size=${size}&&page=${currentPage}`
-    )
+    fetch(`http://localhost:5000/courses?size=${size}&&page=${currentPage}`)
       .then((res) => res.json())
       .then((data) => {
         setCourses(data.courses);

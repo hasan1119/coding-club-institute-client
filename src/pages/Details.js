@@ -17,7 +17,7 @@ const Details = () => {
   const { uid } = user;
 
   useEffect(() => {
-    fetch(`https://aqueous-dawn-65962.herokuapp.com/courses/${id}`)
+    fetch(`http://localhost:5000/courses/${id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data?._id) {
