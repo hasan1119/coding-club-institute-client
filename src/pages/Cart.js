@@ -30,9 +30,12 @@ const Cart = () => {
 
               <button
                 onClick={() => {
-                  fetch(`http://localhost:5000/purchase/${uid}`, {
-                    method: "delete",
-                  })
+                  fetch(
+                    `https://aqueous-dawn-65962.herokuapp.com/purchase/${uid}`,
+                    {
+                      method: "delete",
+                    }
+                  )
                     .then((res) => res.json())
                     .then((data) => {
                       if (data.deletedCount > 0) {

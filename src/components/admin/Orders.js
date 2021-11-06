@@ -4,7 +4,7 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [reload, setReload] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:5000/orders")
+    fetch("https://aqueous-dawn-65962.herokuapp.com/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, [reload]);
@@ -12,7 +12,7 @@ const Orders = () => {
   function cancel(id) {
     const confirmation = window.confirm("Are you sure to delete!!");
     if (confirmation) {
-      fetch(`http://localhost:5000/delete/${id}`, {
+      fetch(`https://aqueous-dawn-65962.herokuapp.com/delete/${id}`, {
         method: "delete",
       })
         .then((res) => res.json())
@@ -29,7 +29,7 @@ const Orders = () => {
   function confirmHandler(id) {
     const confirmation = window.confirm("Are you sure to confirm!!");
     if (confirmation) {
-      fetch(`http://localhost:5000/confirmation/${id}`, {
+      fetch(`https://aqueous-dawn-65962.herokuapp.com/confirmation/${id}`, {
         method: "put",
       })
         .then((res) => res.json())
